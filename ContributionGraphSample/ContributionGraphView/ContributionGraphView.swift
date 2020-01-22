@@ -29,6 +29,11 @@ class ContributionGraphView: UIView {
     // MARK: Properties
     
     public weak var delegate: ContributionGraphViewDelegate?
+    public var graphDate: Date? {
+        didSet {
+            reload()
+        }
+    }
     public var contributions: [Contribution] = [Contribution]() {
         didSet {
             reload()
@@ -90,7 +95,6 @@ class ContributionGraphView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         rearrangedCollectionViewLayout()
-        print(#function)
     }
 }
 
@@ -183,7 +187,7 @@ extension ContributionGraphView {
     }
     
     private func reload() {
-        dataSource = dataSourceManager.createDataSource(with: contributions)
+        dataSource = dataSourceManager.createDataSource(with: contributions, date: graphDate ?? Date())
         collectionView?.reloadData()
         
         if enableReloadAnimatoin {

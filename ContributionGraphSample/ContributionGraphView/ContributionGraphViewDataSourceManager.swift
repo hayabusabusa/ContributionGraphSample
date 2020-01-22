@@ -28,10 +28,10 @@ struct ContributionGraphViewDataSourceManager {
     ///
     /// - Parameters:
     ///   - contributions: New contributions.
-    ///   - startDate: Month showing contribution graph view. Default values is today.
-    func createDataSource(with contributions: [Contribution], startDate: Date = Date()) -> [Contribution] {
-        guard let firstDay = calendar.date(from: calendar.dateComponents([.year, .month], from: startDate)),
-            let numberOfDays = calendar.range(of: .day, in: .month, for: startDate)?.count else { return [] }
+    ///   - date: Month showing contribution graph view. Default values is today.
+    func createDataSource(with contributions: [Contribution], date: Date = Date()) -> [Contribution] {
+        guard let firstDay = calendar.date(from: calendar.dateComponents([.year, .month], from: date)),
+            let numberOfDays = calendar.range(of: .day, in: .month, for: date)?.count else { return [] }
         
         let firstWeekday = calendar.component(.weekday, from: firstDay) - 1
         

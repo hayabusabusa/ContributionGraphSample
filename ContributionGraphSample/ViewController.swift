@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         let contribution = generateContribution()
         firstContributionGraphView.contributions = contributions
         secondContributionGraphView.update(with: contribution)
-        thirdContributionGraphView.contributions = contributions
+        thirdContributionGraphView.graphDate = generateRandomDate()
     }
 }
 
@@ -69,6 +69,14 @@ extension ViewController {
             }
         }
         return contributions
+    }
+    
+    private func generateRandomDate() -> Date? {
+        let today = Date()
+        let culendar = Calendar.current
+        let addingDay = Int.random(in: 30 ... 90)
+        let date = culendar.date(byAdding: .day, value: addingDay, to: today)
+        return date
     }
     
     private func randomRate() -> Contribution.Rate {
